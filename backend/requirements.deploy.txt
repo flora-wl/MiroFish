@@ -1,0 +1,26 @@
+# ===========================================
+# MiroFish Backend - Deployment Dependencies
+# (Slim version for Docker/Railway deployment)
+# camel-ai and camel-oasis are excluded as they
+# are only needed for local simulation scripts,
+# not for the Flask API server itself.
+# ===========================================
+
+# ============= Core Framework =============
+flask>=3.0.0
+flask-cors>=6.0.0
+
+# ============= LLM =============
+openai>=1.0.0
+
+# ============= Zep Cloud =============
+zep-cloud==3.13.0
+
+# ============= File Processing =============
+PyMuPDF>=1.24.0
+charset-normalizer>=3.0.0
+chardet>=5.0.0
+
+# ============= Utilities =============
+python-dotenv>=1.0.0
+pydantic>=2.0.0

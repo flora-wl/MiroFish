@@ -9,7 +9,7 @@ RUN apt-get update \
 WORKDIR /app
 
 # Copy and install Python dependencies
-COPY backend/requirements.txt ./requirements.txt
+COPY backend/requirements.deploy.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend source code
