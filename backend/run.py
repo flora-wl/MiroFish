@@ -38,7 +38,8 @@ def main():
     
     # 获取运行配置
     host = os.environ.get('FLASK_HOST', '0.0.0.0')
-    port = int(os.environ.get('FLASK_PORT', 5001))
+    # Railway sets PORT env var; fall back to FLASK_PORT or 5001
+    port = int(os.environ.get('PORT', os.environ.get('FLASK_PORT', 5001)))
     debug = Config.DEBUG
     
     # 启动服务
