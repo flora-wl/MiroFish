@@ -1,15 +1,20 @@
 FROM python:3.11-slim
 
-# Install system dependencies needed for some Python packages
+# Install system dependencies needed for camel-ai, tiktoken, pillow, pandas, etc.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-     gcc g++ libffi-dev libssl-dev \
+     gcc g++ make libffi-dev libssl-dev \
+     libjpeg-dev zlib1g-dev libpng-dev \
+     curl \
+  && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
   && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /app
 
-# Copy and install Python dependencies
-COPY backend/requirements.deploy.txt ./requirements.txt
+# Copy and install Python dependencies (full, including camel-ai and oasis-ai)
+COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend source code
